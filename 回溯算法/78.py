@@ -14,19 +14,15 @@ What you truly want to become,Everything else is secondary。
 ## 本题的类型是回溯，递归求解子集。
 class Solution:
     def subsets(self, nums):
-        res = []
+        res = [] 
         n = len(nums)
-
-        # 1 2 3
-        def fun(i, temp):
-            res.append(temp)
-            for j in range(i, n):
-                fun(j + 1, temp + [nums[j]])
-
-        fun(0, [])
+        def backtracking(index_start, temp):
+            res.append(temp[:]) 
+            for i in range(index_start, n):
+                temp.append(nums[i])
+                backtracking(i + 1, temp)
+                temp.pop()
+        backtracking(0, [])
         return res
-
-s = Solution()
-print(s.subsets([1, 2, 3]))
 
 
